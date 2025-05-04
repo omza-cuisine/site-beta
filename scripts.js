@@ -1,3 +1,12 @@
+const menuToggle = document.querySelector('.menu-toggle');
+const mainMenu = document.querySelector('.main-menu');
+
+menuToggle.addEventListener('click', () => {
+    mainMenu.classList.toggle('active');
+    
+    // Animation du bouton hamburger
+    menuToggle.classList.toggle('active');
+});
 document.addEventListener('DOMContentLoaded', function() {
     // Gestion mobile - remplacer la gestion existante des dropdowns
     const dropdowns = document.querySelectorAll('.dropdown');

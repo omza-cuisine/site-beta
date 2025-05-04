@@ -315,3 +315,14 @@ header.scrolled .main-menu a {
         padding: 0.5rem;
     }
 }
+/* Empêcher le zoom sur les champs input */
+@media (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+    
+    /* Optimisation des menus */
+    .dropdown-menu li {
+        padding: 0.8rem 1rem;
+    }
+}

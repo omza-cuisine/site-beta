@@ -1,14 +1,17 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const mainMenu = document.querySelector('.main-menu');
-
-menuToggle.addEventListener('click', () => {
-    mainMenu.classList.toggle('active');
-    
-    // Animation du bouton hamburger
-    menuToggle.classList.toggle('active');
-});
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion mobile - remplacer la gestion existante des dropdowns
+    // Gestion du menu hamburger (uniquement sur mobile)
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainMenu = document.querySelector('.main-menu');
+    
+    // Vérifie si les éléments existent avant d'ajouter les écouteurs
+    if (menuToggle && mainMenu) {
+        menuToggle.addEventListener('click', function() {
+            mainMenu.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    }
+
+    // Gestion des dropdowns existante
     const dropdowns = document.querySelectorAll('.dropdown');
     const hasSubmenus = document.querySelectorAll('.has-submenu');
 
@@ -18,50 +21,44 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdowns.forEach(dropdown => {
                 const link = dropdown.querySelector('a');
                 
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    // Fermer les autres menus ouverts
-                    dropdowns.forEach(d => {
-                        if (d !== dropdown) {
-                            d.classList.remove('active');
-                            const submenu = d.querySelector('.dropdown-menu');
-                            if (submenu) submenu.style.display = 'none';
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                                const submenu = d.querySelector('.dropdown-menu');
+                                if (submenu) submenu.style.display = 'none';
+                            }
+                        });
+                        
+                        dropdown.classList.toggle('active');
+                        const menu = dropdown.querySelector('.dropdown-menu');
+                        if (menu) {
+                            menu.style.display = dropdown.classList.contains('active') ? 'block' : 'none';
                         }
                     });
-                    
-                    // Basculer l'état du menu actuel
-                    dropdown.classList.toggle('active');
-                    const menu = dropdown.querySelector('.dropdown-menu');
-                    if (menu) {
-                        if (dropdown.classList.contains('active')) {
-                            menu.style.display = 'block';
-                        } else {
-                            menu.style.display = 'none';
-                        }
-                    }
-                });
+                }
             });
 
             // Gestion des sous-menus
             hasSubmenus.forEach(item => {
                 const link = item.querySelector('a');
                 
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    item.classList.toggle('active');
-                    const submenu = item.querySelector('.submenu');
-                    if (submenu) {
-                        if (item.classList.contains('active')) {
-                            submenu.style.display = 'block';
-                        } else {
-                            submenu.style.display = 'none';
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        item.classList.toggle('active');
+                        const submenu = item.querySelector('.submenu');
+                        if (submenu) {
+                            submenu.style.display = item.classList.contains('active') ? 'block' : 'none';
                         }
-                    }
-                });
+                    });
+                }
             });
         } else {
             // Mode desktop
@@ -81,25 +78,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Au chargement et au redimensionnement
+    // Initialisation
     setupMobileMenu();
     window.addEventListener('resize', setupMobileMenu);
+
+    // Gestion du scroll
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        }
+    });
 
     // Gestion de la récupération des recettes
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('cat');
     
-    if(category) {
+    if (category) {
         console.log(`Catégorie sélectionnée : ${category}`);
     }
-
-    // Gestion du scroll
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
 });

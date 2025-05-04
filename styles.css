@@ -303,3 +303,62 @@ header.scrolled .main-menu a {
         box-shadow: none;
     }
 }
+/* === AJOUTS CSS (ne pas supprimer l'existant) === */
+
+/* Améliorations pour les menus déroulants (desktop et mobile) */
+.dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+}
+
+.has-submenu.active .submenu {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+}
+
+/* Optimisation mobile */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        display: none;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .submenu {
+        display: none;
+        position: static;
+        width: 100%;
+        padding-left: 15px;
+        box-shadow: none;
+    }
+    
+    .has-submenu.active .submenu {
+        display: block;
+    }
+    
+    .dropdown > a, .has-submenu > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .has-submenu > a::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-left: 10px;
+    }
+    
+    .has-submenu.active > a::after {
+        content: "\f077";
+    }
+}

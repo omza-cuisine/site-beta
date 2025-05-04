@@ -1,301 +1,87 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 
-body {
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Header */
-header {
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    transition: all 0.3s ease;
-}
-
-header.scrolled {
-    padding: 0.5rem 1rem;
-}
-
-header.scrolled .logo {
-    font-size: 1.5rem;
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #e74c3c;
-    transition: font-size 0.3s;
-}
-
-/* Navigation */
-.main-menu {
-    display: flex;
-    list-style: none;
-}
-
-.main-menu li {
-    margin: 0 1rem;
-    position: relative;
-}
-
-.main-menu a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s;
-    display: block;
-    padding: 0.5rem 0;
-}
-
-.main-menu a:hover {
-    color: #e74c3c;
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    width: 200px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-}
-
-.dropdown-menu li {
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #eee;
-}
-
-.dropdown-menu li:hover {
-    background-color: #f5f5f5;
-}
-
-/* Submenu */
-.has-submenu {
-    position: relative;
-}
-
-.submenu {
-    position: absolute;
-    left: 100%;
-    top: 0;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
-}
-
-.has-submenu:hover .submenu {
-    opacity: 1;
-    visibility: visible;
-}
-
-.has-submenu > a::after {
-    content: "\f054";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    position: absolute;
-    right: 1rem;
-    font-size: 0.8rem;
-}
-
-/* Search Bar */
-.search-bar {
-    display: flex;
-}
-
-.search-bar input {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-    outline: none;
-}
-
-.search-bar button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/hero-image.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    padding: 0 2rem;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.btn {
-    background-color: #e74c3c;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #c0392b;
-}
-
-/* Recipe Template */
-.recette-template {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 2rem;
-}
-
-.recette-template h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #e74c3c;
-    text-align: center;
-}
-
-.recette-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2rem;
-}
-
-.recette-photo img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.recette-ingredients, .recette-preparation {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Footer */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 3rem;
-}
-
-.social-links {
-    margin-top: 1rem;
-}
-
-.social-links a {
-    color: white;
-    margin: 0 0.5rem;
-    font-size: 1.5rem;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .main-menu {
-        flex-direction: column;
-        width: 100%;
-        margin: 1rem 0;
-    }
-
-    .dropdown > a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .dropdown-menu {
-        position: static;
-        width: 100%;
-        box-shadow: none;
-        display: none;
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .dropdown.active .dropdown-menu {
-        display: block;
-    }
-
-    .has-submenu > a::after {
-        content: "\f078";
-        position: static;
-        margin-left: 10px;
-    }
-
-    .submenu {
-        position: static;
-        width: 100%;
-        padding-left: 15px;
-        box-shadow: none;
-    }
-
-    .recette-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-}
-
-/* Mobile touch improvements */
-@media (max-width: 480px) {
-    input, select, textarea {
-        font-size: 16px;
-    }
+    // Dropdown menu functionality
+    const dropdowns = document.querySelectorAll('.dropdown');
     
-    .dropdown-menu li {
-        padding: 0.8rem 1rem;
+    function setupDropdowns() {
+        const isMobile = window.innerWidth <= 768;
+        
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            // Remove all existing event listeners to avoid duplicates
+            link.removeEventListener('click', handleClick);
+            dropdown.removeEventListener('mouseenter', showMenu);
+            dropdown.removeEventListener('mouseleave', hideMenu);
+            
+            if (isMobile) {
+                // Mobile behavior - toggle on click
+                link.addEventListener('click', handleClick);
+            } else {
+                // Desktop behavior - show/hover on hover
+                dropdown.addEventListener('mouseenter', showMenu);
+                dropdown.addEventListener('mouseleave', hideMenu);
+            }
+        });
+        
+        function handleClick(e) {
+            if (this.parentElement.classList.contains('dropdown')) {
+                e.preventDefault();
+                const dropdown = this.parentElement;
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                // Close all other dropdowns
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                        const otherMenu = otherDropdown.querySelector('.dropdown-menu');
+                        if (otherMenu) otherMenu.style.display = 'none';
+                    }
+                });
+                
+                // Toggle current dropdown
+                if (menu.style.display === 'block') {
+                    menu.style.display = 'none';
+                    dropdown.classList.remove('active');
+                } else {
+                    menu.style.display = 'block';
+                    dropdown.classList.add('active');
+                }
+            }
+        }
+        
+        function showMenu() {
+            const menu = this.querySelector('.dropdown-menu');
+            if (menu) {
+                menu.style.opacity = '1';
+                menu.style.visibility = 'visible';
+            }
+        }
+        
+        function hideMenu() {
+            const menu = this.querySelector('.dropdown-menu');
+            if (menu) {
+                menu.style.opacity = '0';
+                menu.style.visibility = 'hidden';
+            }
+        }
     }
-}
+
+    // Initial setup
+    setupDropdowns();
+    
+    // Re-setup when window is resized
+    window.addEventListener('resize', function() {
+        setupDropdowns();
+    });
+});

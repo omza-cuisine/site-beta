@@ -257,81 +257,42 @@ footer {
     opacity: 1;
     visibility: visible;
 }
-@media (max-width: 480px) {
-    /* Header adjustments */
-    header {
-        padding: 0.5rem;
-        flex-wrap: wrap;
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-        margin-right: auto;
-    }
-    
-    nav {
-        order: 3;
-        width: 100%;
-        margin-top: 0.5rem;
-    }
-    
-    .search-bar {
-        margin-left: auto;
-        order: 2;
-        width: auto;
-    }
-    
-    .search-bar input {
-        width: 150px;
-    }
-    
-    /* Menu adjustments */
+@media (max-width: 768px) {
+    /* Menu mobile amélioré */
     .main-menu {
         flex-direction: column;
-        background: #fff;
         width: 100%;
     }
-    
-    .main-menu > li {
-        margin: 0;
-        border-bottom: 1px solid #eee;
+
+    .dropdown > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    
-    .main-menu a {
-        padding: 0.8rem 1rem;
-        display: block;
-    }
-    
-    /* Dropdown adjustments */
+
     .dropdown-menu {
         position: static;
         width: 100%;
         box-shadow: none;
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
     }
-    
-    .dropdown:hover .dropdown-menu,
-    .has-submenu:hover .submenu {
-        display: block;
+
+    .dropdown.active .dropdown-menu {
+        max-height: 500px; /* Assez grand pour contenir le sous-menu */
+        opacity: 1;
+        visibility: visible;
     }
-    
+
+    .has-submenu > a::after {
+        content: "\f078"; /* Flèche vers le bas */
+    }
+
     .submenu {
         position: static;
         width: 100%;
-        padding-left: 1rem;
-    }
-    
-    /* Recipe template adjustments */
-    .recette-template {
-        padding: 0 1rem;
-    }
-    
-    .hero {
-        height: 40vh;
-        padding: 0 1rem;
-    }
-    
-    .hero h1 {
-        font-size: 1.8rem;
+        padding-left: 15px;
+        box-shadow: none;
     }
 }

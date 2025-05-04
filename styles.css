@@ -680,3 +680,112 @@ html, body {
         display: block;
     }
 }
+@media (max-width: 768px) and (orientation: portrait) {
+    /* Menu mobile en mode portrait */
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .main-menu {
+        flex-direction: column;
+        width: 100%;
+        margin: 1rem 0;
+        display: none; /* Cache le menu par défaut */
+    }
+    
+    .main-menu.active {
+        display: flex; /* Affiche le menu quand activé */
+    }
+    
+    .main-menu li {
+        margin: 0.5rem 0;
+    }
+    
+    /* Bouton hamburger */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 2rem;
+        height: 2rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-right: 1rem;
+    }
+    
+    .menu-toggle span {
+        width: 2rem;
+        height: 0.25rem;
+        background: #e74c3c;
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+        transform-origin: 1px;
+    }
+    
+    /* Style pour le header en mobile */
+    header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .search-bar {
+        width: 100%;
+        margin-top: 1rem;
+        order: 3;
+    }
+    
+    .dropdown-menu {
+        display: none;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        padding-left: 1rem;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+    
+    .submenu {
+        display: none;
+        position: static;
+        width: 100%;
+        padding-left: 1rem;
+    }
+    
+    .has-submenu.active .submenu {
+        display: block;
+    }
+    
+    .dropdown > a, .has-submenu > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .has-submenu > a::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-left: 10px;
+    }
+    
+    .has-submenu.active > a::after {
+        content: "\f077";
+    }
+    
+    /* Ajustement de la grille de recette */
+    .recette-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Empêcher le zoom sur les champs input */
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}

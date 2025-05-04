@@ -1,62 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion des menus déroulants pour desktop et mobile
-    const dropdowns = document.querySelectorAll('.dropdown');
-    const hasSubmenus = document.querySelectorAll('.has-submenu');
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+// Gestion mobile - remplacer la gestion existante des dropdowns
+const dropdowns = document.querySelectorAll('.dropdown');
+const hasSubmenus = document.querySelectorAll('.has-submenu');
 
-    if (isMobile) {
-        // Comportement pour mobile (clics)
+function setupMobileMenu() {
+    if (window.innerWidth <= 768) {
+        // Mode mobile
         dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('a');
-            const menu = dropdown.querySelector('.dropdown-menu');
+            const link = dropdown.querySelector('a');
             
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-                menu.style.opacity = menu.style.display === 'block' ? '1' : '0';
-                menu.style.visibility = menu.style.display === 'block' ? 'visible' : 'hidden';
-            });
-        });
-
-        hasSubmenus.forEach(item => {
-            const toggle = item.querySelector('a');
-            const submenu = item.querySelector('.submenu');
-            
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-                submenu.style.opacity = submenu.style.display === 'block' ? '1' : '0';
-                submenu.style.visibility = submenu.style.display === 'block' ? 'visible' : 'hidden';
+            link.addEventListener('click', function(e) {
+                if (dropdown.classList.contains('has-submenu')) {
+                    e.preventDefault(); // Empêche la navigation pour les éléments avec sous-menu
+                }
+                
+                dropdowns.forEach(d => {
+                    if (d !== dropdown) d.classList.remove('active');
+                });
+                
+                dropdown.classList.toggle('active');
             });
         });
     } else {
-        // Comportement pour desktop (hover)
+        // Mode desktop
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener('mouseenter', function() {
-                this.querySelector('.dropdown-menu').style.opacity = '1';
-                this.querySelector('.dropdown-menu').style.visibility = 'visible';
-                this.querySelector('.dropdown-menu').style.display = 'block';
+                this.classList.add('active');
             });
             
             dropdown.addEventListener('mouseleave', function() {
-                this.querySelector('.dropdown-menu').style.opacity = '0';
-                this.querySelector('.dropdown-menu').style.visibility = 'hidden';
-            });
-        });
-
-        hasSubmenus.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.querySelector('.submenu').style.opacity = '1';
-                this.querySelector('.submenu').style.visibility = 'visible';
-                this.querySelector('.submenu').style.display = 'block';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.querySelector('.submenu').style.opacity = '0';
-                this.querySelector('.submenu').style.visibility = 'hidden';
+                this.classList.remove('active');
             });
         });
     }
+}
+
+// Au chargement et au redimensionnement
+document.addEventListener('DOMContentLoaded', setupMobileMenu);
+window.addEventListener('resize', setupMobileMenu);
 
     // Gestion de la récupération des recettes
     const urlParams = new URLSearchParams(window.location.search);

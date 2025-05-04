@@ -362,3 +362,28 @@ header.scrolled .main-menu a {
         content: "\f077";
     }
 }
+/* Correction mobile : empêche le débordement */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Réinitialisation des menus en mode mobile */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        display: none;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+    }
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+    .submenu {
+        display: none;
+        padding-left: 15px;
+    }
+    .has-submenu.active .submenu {
+        display: block;
+    }
+}

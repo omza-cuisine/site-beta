@@ -207,25 +207,6 @@ footer {
     font-size: 1.5rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .main-menu {
-        margin: 1rem 0;
-    }
-
-    .recette-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-}
 /* Sous-menu avec flèche */
 .dropdown-menu .has-submenu {
     position: relative;
@@ -256,6 +237,32 @@ footer {
 .has-submenu:hover .submenu {
     opacity: 1;
     visibility: visible;
+}
+
+/* Header scroll */
+header.scrolled {
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .logo {
+    font-size: 1.5rem;
+}
+
+header.scrolled .main-menu a {
+    padding: 0.3rem 0;
+}
+
+/* Empêcher le zoom sur les champs input */
+@media (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+    
+    /* Optimisation des menus */
+    .dropdown-menu li {
+        padding: 0.8rem 1rem;
+    }
 }
 @media (max-width: 768px) {
     /* Menu mobile amélioré */
@@ -294,35 +301,5 @@ footer {
         width: 100%;
         padding-left: 15px;
         box-shadow: none;
-    }
-}
-/* Header scroll */
-header.scrolled {
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
-}
-
-header.scrolled .logo {
-    font-size: 1.5rem;
-}
-
-header.scrolled .main-menu a {
-    padding: 0.3rem 0;
-}
-
-@media (max-width: 768px) {
-    header.scrolled {
-        padding: 0.5rem;
-    }
-}
-/* Empêcher le zoom sur les champs input */
-@media (max-width: 768px) {
-    input, select, textarea {
-        font-size: 16px !important;
-    }
-    
-    /* Optimisation des menus */
-    .dropdown-menu li {
-        padding: 0.8rem 1rem;
     }
 }

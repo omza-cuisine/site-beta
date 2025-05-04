@@ -255,90 +255,44 @@ header.scrolled .main-menu a {
 
 /* Empêcher le zoom sur les champs input */
 @media (max-width: 768px) {
-    input, select, textarea {
-        font-size: 16px !important;
+    /* Menu mobile */
+    header {
+        flex-direction: column;
+        padding: 1rem;
     }
     
-    /* Optimisation des menus */
-    .dropdown-menu li {
-        padding: 0.8rem 1rem;
-    }
-}
-@media (max-width: 768px) {
-    /* Menu mobile amélioré */
     .main-menu {
         flex-direction: column;
         width: 100%;
+        margin: 1rem 0;
     }
-
-    .dropdown > a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    
+    .main-menu li {
+        margin: 0.5rem 0;
     }
-
-    .dropdown-menu {
-        position: static;
+    
+    .search-bar {
         width: 100%;
-        box-shadow: none;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
+        margin-top: 1rem;
     }
-
-    .dropdown.active .dropdown-menu {
-        max-height: 500px; /* Assez grand pour contenir le sous-menu */
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .has-submenu > a::after {
-        content: "\f078"; /* Flèche vers le bas */
-    }
-
-    .submenu {
-        position: static;
-        width: 100%;
-        padding-left: 15px;
-        box-shadow: none;
-    }
-}
-/* === AJOUTS CSS (ne pas supprimer l'existant) === */
-
-/* Améliorations pour les menus déroulants (desktop et mobile) */
-.dropdown.active .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    max-height: none;
-}
-
-.has-submenu.active .submenu {
-    opacity: 1;
-    visibility: visible;
-    max-height: none;
-}
-
-/* Optimisation mobile */
-@media (max-width: 768px) {
+    
     .dropdown-menu {
         display: none;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        padding-left: 1rem;
     }
     
     .dropdown.active .dropdown-menu {
         display: block;
-        position: static;
-        width: 100%;
-        box-shadow: none;
-        opacity: 1;
-        visibility: visible;
     }
     
     .submenu {
         display: none;
         position: static;
         width: 100%;
-        padding-left: 15px;
-        box-shadow: none;
+        padding-left: 1rem;
     }
     
     .has-submenu.active .submenu {
@@ -361,29 +315,14 @@ header.scrolled .main-menu a {
     .has-submenu.active > a::after {
         content: "\f077";
     }
-}
-/* Correction mobile : empêche le débordement */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-/* Réinitialisation des menus en mode mobile */
-@media (max-width: 768px) {
-    .dropdown-menu {
-        display: none;
-        position: static;
-        width: 100%;
-        box-shadow: none;
+    
+    /* Empêcher le zoom sur les champs input */
+    input, select, textarea {
+        font-size: 16px !important;
     }
-    .dropdown.active .dropdown-menu {
-        display: block;
-    }
-    .submenu {
-        display: none;
-        padding-left: 15px;
-    }
-    .has-submenu.active .submenu {
-        display: block;
+    
+    /* Ajustement de la grille de recette */
+    .recette-grid {
+        grid-template-columns: 1fr;
     }
 }

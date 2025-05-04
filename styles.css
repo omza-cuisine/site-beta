@@ -788,4 +788,17 @@ html, body {
     input, select, textarea {
         font-size: 16px !important;
     }
+
+    .recette-photo img {
+        max-height: 300px;
+        object-fit: cover;
+    }
+    
+    .recette-template {
+        padding: 0 1rem;
+    }
+    
+    .recette-template h2 {
+        font-size: 1.8rem;
+    }
 }

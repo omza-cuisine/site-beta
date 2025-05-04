@@ -1,25 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion du menu hamburger
+    // Gestion du menu hamburger (uniquement sur mobile)
     const menuToggle = document.querySelector('.menu-toggle');
     const mainMenu = document.querySelector('.main-menu');
     
+    // Vérifie si les éléments existent avant d'ajouter les écouteurs
     if (menuToggle && mainMenu) {
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation(); // Empêche la propagation de l'événement
-            this.classList.toggle('active');
+        menuToggle.addEventListener('click', function() {
             mainMenu.classList.toggle('active');
-        });
-        
-        // Fermer le menu quand on clique à l'extérieur
-        document.addEventListener('click', function(e) {
-            if (!mainMenu.contains(e.target) {
-                menuToggle.classList.remove('active');
-                mainMenu.classList.remove('active');
-            }
+            this.classList.toggle('active');
         });
     }
 
-    // Gestion des dropdowns
+    // Gestion des dropdowns existante
     const dropdowns = document.querySelectorAll('.dropdown');
     const hasSubmenus = document.querySelectorAll('.has-submenu');
 
@@ -31,17 +23,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (link) {
                     link.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            
-                            dropdowns.forEach(d => {
-                                if (d !== dropdown) {
-                                    d.classList.remove('active');
-                                }
-                            });
-                            
-                            dropdown.classList.toggle('active');
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                                const submenu = d.querySelector('.dropdown-menu');
+                                if (submenu) submenu.style.display = 'none';
+                            }
+                        });
+                        
+                        dropdown.classList.toggle('active');
+                        const menu = dropdown.querySelector('.dropdown-menu');
+                        if (menu) {
+                            menu.style.display = dropdown.classList.contains('active') ? 'block' : 'none';
                         }
                     });
                 }
@@ -53,10 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (link) {
                     link.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            item.classList.toggle('active');
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        item.classList.toggle('active');
+                        const submenu = item.querySelector('.submenu');
+                        if (submenu) {
+                            submenu.style.display = item.classList.contains('active') ? 'block' : 'none';
                         }
                     });
                 }
@@ -66,10 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdowns.forEach(dropdown => {
                 dropdown.addEventListener('mouseenter', function() {
                     this.classList.add('active');
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'block';
                 });
                 
                 dropdown.addEventListener('mouseleave', function() {
                     this.classList.remove('active');
+                    const menu = this.querySelector('.dropdown-menu');
+                    if (menu) menu.style.display = 'none';
                 });
             });
         }

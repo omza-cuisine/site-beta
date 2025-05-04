@@ -802,3 +802,72 @@ html, body {
         font-size: 1.8rem;
     }
 }
+/* Styles spécifiques pour le menu hamburger */
+.menu-toggle {
+    display: none; /* Caché par défaut */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    z-index: 101;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #e74c3c;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Animation du bouton hamburger */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .main-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 100;
+    }
+    
+    .main-menu.active {
+        transform: translateY(0);
+    }
+    
+    /* Ajustement pour le header en mobile */
+    header {
+        position: relative;
+        flex-wrap: wrap;
+    }
+    
+    .search-bar {
+        order: 3;
+        width: 100%;
+        margin-top: 1rem;
+    }
+}

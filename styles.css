@@ -252,8 +252,278 @@ header.scrolled .logo {
 header.scrolled .main-menu a {
     padding: 0.3rem 0;
 }
+/* Améliorations pour les menus déroulants (desktop et mobile) */
+.dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+}
 
-/* Empêcher le zoom sur les champs input */
+.has-submenu.active .submenu {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+}
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* En-tête */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+/* Navigation */
+.main-menu {
+    display: flex;
+    list-style: none;
+}
+
+.main-menu li {
+    margin: 0 1rem;
+    position: relative;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.main-menu a:hover {
+    color: #e74c3c;
+}
+
+/* Menu déroulant */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-menu li {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f5f5f5;
+}
+
+/* Barre de recherche */
+.search-bar {
+    display: flex;
+}
+
+.search-bar input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+/* Section hero */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 2rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #c0392b;
+}
+
+/* Template de recette */
+.recette-template {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.recette-template h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #e74c3c;
+    text-align: center;
+}
+
+.recette-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.recette-photo img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recette-ingredients, .recette-preparation {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recette-ingredients h3, .recette-preparation h3 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.recette-ingredients ul, .recette-preparation ol {
+    margin-left: 1.5rem;
+}
+
+.recette-ingredients li, .recette-preparation li {
+    margin-bottom: 0.5rem;
+}
+
+/* Pied de page */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+/* Sous-menu avec flèche */
+.dropdown-menu .has-submenu {
+    position: relative;
+}
+
+.dropdown-menu .has-submenu > a::after {
+    content: "\f054";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 1rem;
+    font-size: 0.8rem;
+}
+
+.submenu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.has-submenu:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Header scroll */
+header.scrolled {
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .logo {
+    font-size: 1.5rem;
+}
+
+header.scrolled .main-menu a {
+    padding: 0.3rem 0;
+}
+
 @media (max-width: 768px) {
     /* Menu mobile */
     header {
@@ -324,5 +594,89 @@ header.scrolled .main-menu a {
     /* Ajustement de la grille de recette */
     .recette-grid {
         grid-template-columns: 1fr;
+    }
+}
+/* === AJOUTS CSS (ne pas supprimer l'existant) === */
+
+/* Améliorations pour les menus déroulants (desktop et mobile) */
+.dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+}
+
+.has-submenu.active .submenu {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+}
+
+/* Optimisation mobile */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        display: none;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .submenu {
+        display: none;
+        position: static;
+        width: 100%;
+        padding-left: 15px;
+        box-shadow: none;
+    }
+    
+    .has-submenu.active .submenu {
+        display: block;
+    }
+    
+    .dropdown > a, .has-submenu > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .has-submenu > a::after {
+        content: "\f078";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-left: 10px;
+    }
+    
+    .has-submenu.active > a::after {
+        content: "\f077";
+    }
+}
+/* Correction mobile : empêche le débordement */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Réinitialisation des menus en mode mobile */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        display: none;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+    }
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+    .submenu {
+        display: none;
+        padding-left: 15px;
+    }
+    .has-submenu.active .submenu {
+        display: block;
     }
 }

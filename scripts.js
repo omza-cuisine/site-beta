@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion du menu hamburger (votre code existant)
+    // Gestion du menu hamburger (version corrigée)
     const menuToggle = document.querySelector('.menu-toggle');
     const mainMenu = document.querySelector('.main-menu');
     const dropdowns = document.querySelectorAll('.dropdown');
     
     function toggleMenu() {
-    menuToggle.classList.toggle('active');
-    mainMenu.classList.toggle('active');
-    
-    // Ajoute cette condition pour fermer les dropdowns quand le menu se ferme
-    if (!mainMenu.classList.contains('active')) {
-        dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
+        const isActive = mainMenu.classList.contains('active');
+        menuToggle.classList.toggle('active', !isActive);
+        mainMenu.classList.toggle('active', !isActive);
+        document.body.style.overflow = isActive ? '' : 'hidden';
+        
+        if (!isActive) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
         }
     }
     
@@ -26,11 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!mainMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 menuToggle.classList.remove('active');
                 mainMenu.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     }
 
-    // Gestion des dropdowns (votre code existant)
+    // Gestion des dropdowns (identique)
     function setupDropdowns() {
         dropdowns.forEach(dropdown => {
             const link = dropdown.querySelector('a');
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupDropdowns();
     window.addEventListener('resize', setupDropdowns);
 
-    // Gestion du scroll (votre code existant)
+    // Gestion du scroll (identique)
     window.addEventListener('scroll', function() {
         const header = document.querySelector('header');
         if (header) {
@@ -63,49 +65,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Nouveau code pour la recherche
+    // Nouveau code pour la recherche (version corrigée)
     const searchForm = document.getElementById('searchForm');
     if (searchForm) {
-        searchForm.addEventListener('submit', function(e) {
+        searchForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const searchInput = document.getElementById('searchInput');
             const searchTerm = searchInput.value.trim().toLowerCase();
             
             if (searchTerm) {
-                // Simulation de recherche (remplacez par votre vrai code JSON plus tard)
-                const mockRecettes = [
-                    {
-                        title: "Mille Trous",
-                        category: "Casse Croute",
-                        url: "recette.html?cat=Mille Trous",
-                        ingredients: ["farine", "semoule fine", "eau tiède", "levure boulangère", "levure chimique"]
-                    },
-                    {
-                        title: "Tajine",
-                        category: "Plats",
-                        url: "recette.html?cat=Plats",
-                        ingredients: ["viande", "légumes", "épices"]
+                try {
+                    const response = await fetch('recettes.json');
+                    if (!response.ok) throw new Error('Erreur de chargement des recettes');
+                    
+                    const allRecettes = await response.json();
+                    
+                    const results = allRecettes.filter(recette => 
+                        recette.title.toLowerCase().includes(searchTerm) ||
+                        (recette.ingredients && recette.ingredients.some(ing => ing.toLowerCase().includes(searchTerm)))
+                    );
+                    
+                    if (results.length > 0) {
+                        sessionStorage.setItem('searchResults', JSON.stringify(results));
+                        window.location.href = 'liste-recette.html?search=' + encodeURIComponent(searchTerm);
+                    } else {
+                        alert('Aucune recette trouvée pour : ' + searchTerm);
                     }
-                ];
-                
-                const results = mockRecettes.filter(recette => 
-                    recette.title.toLowerCase().includes(searchTerm) ||
-                    recette.ingredients.some(ing => ing.toLowerCase().includes(searchTerm))
-                );
-                
-                if (results.length > 0) {
-                    sessionStorage.setItem('searchResults', JSON.stringify(results));
-                    window.location.href = 'liste-recette.html?search=' + encodeURIComponent(searchTerm);
-                } else {
-                    alert('Aucune recette trouvée pour : ' + searchTerm);
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    alert('Une erreur est survenue lors de la recherche');
                 }
             }
         });
     }
 
-    // Afficher les résultats si on est sur la page liste-recette.html
+    // Afficher les résultats SI recherche, sinon garder l'affichage initial
     if (window.location.pathname.includes('liste-recette.html')) {
-        displaySearchResults();
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTerm = urlParams.get('search');
+        
+        if (searchTerm) {
+            displaySearchResults();
+        }
+        // Sinon, on laisse le contenu HTML initial tel quel
     }
 });
 
@@ -114,7 +116,7 @@ function displaySearchResults() {
     const searchTerm = urlParams.get('search');
     
     if (searchTerm) {
-        const results = JSON.parse(sessionStorage.getItem('searchResults') || [];
+        const results = JSON.parse(sessionStorage.getItem('searchResults') || []);
         const section = document.querySelector('.recette-template');
         
         if (section) {
@@ -155,19 +157,6 @@ function displaySearchResults() {
                     </div>
                 `;
             }
-        }
-    } else {
-        // Afficher toutes les recettes si pas de terme de recherche
-        const section = document.querySelector('.recette-template');
-        if (section) {
-            section.innerHTML = `
-                <h2>Toutes nos recettes</h2>
-                <div class="category-links">
-                    <a href="casse-croute.html" class="btn">Casse-croûte</a>
-                    <a href="plats.html" class="btn">Plats principaux</a>
-                    <a href="desserts.html" class="btn">Desserts</a>
-                </div>
-            `;
         }
     }
 }

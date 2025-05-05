@@ -347,14 +347,18 @@ footer {
         flex-direction: column;
         padding: 1rem;
         box-shadow: var(--shadow);
-        transform: translateY(-150%);
-        transition: transform 0.3s ease-in-out;
+        display: none;
         z-index: 100;
     }
     
     .main-menu.active {
-        transform: translateY(0);
+        display: flex;
     }
+    
+    body.menu-open {
+        overflow: hidden;
+    }
+
     .recette-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -370,8 +374,7 @@ footer {
         height: auto;
         max-height: 300px;
     }
-    
-    .recette-ingredients, 
+
     .recette-preparation {
         padding: 1rem;
     }
@@ -379,9 +382,6 @@ footer {
     .recette-category {
         margin-bottom: 2rem;
         padding-bottom: 1rem;
-    }
-    .main-menu {
-        display: none; /* Change ceci de 'flex' à 'none' */
     }
     
     .main-menu.active {
@@ -423,10 +423,6 @@ footer {
     
     input, select, textarea {
         font-size: 16px !important;
-    }
-    
-    .recette-grid {
-        grid-template-columns: 1fr;
     }
     
     .recette-photo img {

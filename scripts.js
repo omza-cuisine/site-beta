@@ -5,13 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.dropdown');
     
     function toggleMenu() {
-        menuToggle.classList.toggle('active');
-        mainMenu.classList.toggle('active');
-        
-        if (!mainMenu.classList.contains('active')) {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
+    menuToggle.classList.toggle('active');
+    mainMenu.classList.toggle('active');
+    
+    // Ajoute cette condition pour fermer les dropdowns quand le menu se ferme
+    if (!mainMenu.classList.contains('active')) {
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
         }
     }
     

@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Mille Trous",
+        "category": "Casse Croute",
+        "url": "casse-croute.html#mille-trous",
+        "ingredients": ["farine", "semoule fine", "eau tiède", "levure boulangère", "levure chimique"]
+    },
+    {
+        "title": "Maklouba",
+        "category": "Plats",
+        "url": "plats.html#maklouba",
+        "ingredients": ["3 Tomates", "2 aubergines", "500 grammes de riz", "3 cuisses de poulet"]
+    }
+]

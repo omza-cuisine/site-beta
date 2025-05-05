@@ -194,8 +194,14 @@ header {
 
 .recette-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
+    align-items: stretch;
+}
+
+.recette-photo {
+    height: 200px;
+    overflow: hidden;
 }
 
 .recette-photo img {
@@ -291,6 +297,35 @@ footer {
 .menu-toggle.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
 }
+/* Styles pour les cartes de recettes - Mode Desktop */
+.recette-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.recette-photo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.recette-ingredients {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.recette-ingredients h3 {
+    margin-top: 0;
+}
+
+.recette-ingredients ul {
+    flex: 1;
+    margin-bottom: 1rem;
+}
 
 /* Media Queries */
 @media (max-width: 768px) {
@@ -364,4 +399,77 @@ footer {
     .recette-photo img {
         max-height: 300px;
     }
+}
+/* Styles pour les résultats de recherche */
+.recette-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.recette-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.recette-card h3 a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.recette-card h3 a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.recette-card .recette-photo img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.recette-category {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.recette-category:last-child {
+    border-bottom: none;
+}
+
+/* Styles pour les résultats de recherche */
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.no-results h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.no-results ul {
+    list-style-type: none;
+    margin: 1rem 0;
+}
+
+.category-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.category-links .btn {
+    min-width: 200px;
+    text-align: center;
 }

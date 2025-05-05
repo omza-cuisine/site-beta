@@ -22,39 +22,85 @@
                 <li class="dropdown">
                     <a href="#">Liste par catégorie <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li class="has-submenu">
-                            <a href="#">Casse Croute</a>
-                            <ul class="submenu">
-                                <li><a href="recette.html?cat=Mille Trous">Mille Trous</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="recette.html?cat=Plats">Plats</a></li>
-                        <li><a href="recette.html?cat=Desserts">Desserts</a></li>
+                        <li><a href="casse-croute.html">Casse Croute</a></li>
+                        <li><a href="plats.html">Plats</a></li>
+                        <li><a href="desserts.html">Desserts</a></li>
                     </ul>
-                </li>
+                </li>   
             </ul>
         </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Rechercher une recette...">
-            <button><i class="fas fa-search"></i></button>
-        </div>
+        <form class="search-bar" id="searchForm">
+            <input type="text" id="searchInput" placeholder="Rechercher une recette..." required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
     </header>
 
     <main>
-        <section class="recette-template">
-            <h2>Liste des recettes</h2>
-            <div class="recette-grid">
+    <section class="recette-template">
+        <!-- Le contenu sera remplacé dynamiquement par les résultats de recherche -->
+        <h2>Liste des recettes</h2>
+        <div class="recette-grid">
+            <div class="recette-card">
                 <div class="recette-photo">
-                    <img src="images/logo.jpeg" alt="favicone">
+                    <img src="images/Mille_Trous.jpeg" alt="Mille Trous" style="object-fit: contain; background-color: #f5f5f5;">
                 </div>
                 <div class="recette-ingredients">
-                    <h3>Liste</h3>
+                    <h3><a href="casse-croute.html#milletrous">Mille Trous</a></h3>
+                    <p>Catégorie: Casse Croute</p>
                     <ul>
-                        <li><a href="recette.html?cat=Mille Trous">Mille Trous</a></li>
+                        <li>farine</li>
+                        <li>semoule fine</li>
+                        <li>eau tiède</li>
+                        <li>levure boulangère</li>
+                        <li>levure chimique</li>
                     </ul>
                 </div>
             </div>
-        </section>
+            <div class="recette-card">
+                <div class="recette-photo">
+                    <img src="images/melwi.jpeg" alt="melwi" style="object-fit: contain; background-color: #f5f5f5;">
+                </div>
+                <div class="recette-ingredients">
+                    <h3><a href="casse-croute.html#melwi">Melwi</a></h3>
+                    <p>Catégorie: Casse Croute</p>
+                    <ul>
+                        <li>farine</li>
+                        <li>semoule fine</li>
+                        <li>eau tiède</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="recette-card">
+                <div class="recette-photo">
+                    <img src="images/maklouba.jpeg" alt="Maklouba" onerror="this.src='images/logo.jpeg'">
+                </div>
+                <div class="recette-ingredients">
+                    <h3><a href="plats.html#Maklouba">Maklouba</a></h3>
+                    <p>Catégorie: Plats</p>
+                    <ul>
+                        <li>3 Tomates</li>
+                        <li>2 aubergines</li>
+                        <li>500 grammes de riz</li>
+                        <li>3 cuisses de poulet</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="recette-card">
+                <div class="recette-photo">
+                    <img src="images/saladefruit.jpeg" alt="saladefruit" onerror="this.src='images/logo.jpeg'">
+                </div>
+                <div class="recette-ingredients">
+                    <h3><a href="desserts.html#saladefruit">Salade de fruit</a></h3>
+                    <p>Catégorie: Desserts</p>
+                    <ul>
+                        <li>1 Pomme</li>
+                        <li>1 Orange</li>
+                        <li>500 ml de jus d'orange</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     </main>
 
     <footer>

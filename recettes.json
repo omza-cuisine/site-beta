@@ -2,7 +2,7 @@
     {
         "title": "Mille Trous",
         "category": "Casse Croute",
-        "url": "casse-croute.html#mille-trous",
+        "url": "casse-croute.html#milletrous",
         "ingredients": ["farine", "semoule fine", "eau tiède", "levure boulangère", "levure chimique"]
     },
     {
@@ -10,5 +10,17 @@
         "category": "Plats",
         "url": "plats.html#maklouba",
         "ingredients": ["3 Tomates", "2 aubergines", "500 grammes de riz", "3 cuisses de poulet"]
+    }
+    {
+        "title": "Melwi",
+        "category": "Casse Croute",
+        "url": "plats.html#melwi",
+        "ingredients": ["farine", "semoule fine"]
+    }
+    {
+        "title": "Salade de fruit",
+        "category": "Desserts",
+        "url": "desserts.html#saladefruit",
+        "ingredients": ["Pomme", "Orange"]
     }
 ]
